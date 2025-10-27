@@ -1,44 +1,196 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Member Directory</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'primary-blue': '#1F3D5D',
-                        'accent-blue': '#2A5280',
-                        'light-gray': '#F5F7FA',
-                        'dark-text': '#333333',
-                        'light-text': '#555555',
-                    },
-                    fontFamily: {
-                        sans: ['Roboto', 'sans-serif'],
-                    }
-                }
-            }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ascension Directory</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'primary-blue': '#1e3a8a',
+            'primary-navy': '#1e293b',
+            'accent-blue': '#3b82f6',
+            'light-gray': '#f8fafc'
+          }
         }
-    </script>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-<script type="importmap">
-{
-  "imports": {
-    "react-router-dom": "https://aistudiocdn.com/react-router-dom@^7.9.4",
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
-    "react/": "https://aistudiocdn.com/react@^19.2.0/",
-    "react": "https://aistudiocdn.com/react@^19.2.0",
-    "@google/genai": "https://aistudiocdn.com/@google/generative-ai@0.1.0"
-  }
-}
-</script>
+      }
+    }
+  </script>
 </head>
-<body class="font-sans antialiased text-dark-text bg-light-gray min-h-screen flex flex-col">
-    <div id="root" class="flex-grow flex flex-col"></div>
-    <script type="module" src="/index.tsx"></script>
+<body class="bg-light-gray font-sans text-gray-900">
+  <header class="bg-primary-navy text-white shadow-lg">
+    <div class="container mx-auto px-4 py-6">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center space-x-4">
+          <div class="h-12 w-12 bg-primary-blue rounded-lg flex items-center justify-center">
+            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+            </svg>
+          </div>
+          <div>
+            <h1 class="text-2xl font-bold">Ascension Directory</h1>
+            <p class="text-blue-200 text-sm">Community Member Directory</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container mx-auto px-4 py-8">
+    <div class="text-center mb-12">
+      <h1 class="text-4xl font-bold text-primary-navy mb-4">Community Directory</h1>
+      <p class="text-gray-600 text-lg">Find members by skills, roles, and topics of interest</p>
+    </div>
+
+    <div class="text-center mb-8">
+      <p class="text-gray-600" id="results-count">Loading members...</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="members-grid">
+      <!-- Members will be loaded here -->
+    </div>
+  </main>
+
+  <footer class="bg-primary-navy text-white mt-16">
+    <div class="container mx-auto px-4 py-8">
+      <div class="text-center">
+        <p class="text-blue-200">&copy; Ascension Directory. Built with Eleventy.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Simple test data - will be replaced with actual data
+    const testMembers = [
+      {
+        name: "Fed (Federico Maffini)",
+        linkedin: "https://www.linkedin.com/in/federicomaffini/",
+        current_role_what_i_do: "COO at The Collecting Group (10+ years at Amazon previously). Focus on Data, Biz Ops, and \"getting shit done.\"",
+        topics_to_ask_me_about: ["Real world AI applications", "processes and mechanisms", "sales operations", "business operations"],
+        slug: "fed-federico-maffini"
+      },
+      {
+        name: "Andrew Ledet",
+        linkedin: "https://www.linkedin.com/in/andrewledet/",
+        current_role_what_i_do: "Building a tool to help with communication overload, mentor/coach, teach tech in the community, play the sax in two bands.",
+        topics_to_ask_me_about: ["Leadership", "mindfulness", "journaling", "Customer Success"],
+        slug: "andrew-ledet"
+      }
+    ];
+
+    document.addEventListener('DOMContentLoaded', function() {
+      const grid = document.getElementById('members-grid');
+      const countElement = document.getElementById('results-count');
+
+      // Render members
+      testMembers.forEach(member => {
+        const card = document.createElement('div');
+        card.className = 'member-card bg-white rounded-lg shadow-md hover:shadow-lg overflow-hidden';
+        card.setAttribute('data-slug', member.slug);
+
+        card.innerHTML = `
+          <div class="p-6">
+            <div class="w-16 h-16 bg-primary-blue rounded-full flex items-center justify-center mb-4">
+              <span class="text-white text-xl font-semibold">
+                ${member.name.split(' ')[0][0]}${member.name.split('(')[0].split(' ').pop()[0]}
+              </span>
+            </div>
+            <h3 class="text-xl font-semibold text-primary-navy mb-2">
+              <a href="/member/${member.slug}/" class="hover:text-primary-blue transition-colors">
+                ${member.name}
+              </a>
+            </h3>
+            <p class="text-gray-600 text-sm mb-4 line-clamp-3">
+              ${member.current_role_what_i_do}
+            </p>
+            <div class="mb-4">
+              <div class="flex flex-wrap gap-1">
+                ${member.topics_to_ask_me_about.map(topic => `
+                  <span class="topic-tag bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs">
+                    ${topic}
+                  </span>
+                `).join('')}
+              </div>
+            </div>
+            ${member.linkedin ? `
+              <a
+                href="${member.linkedin}"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center px-3 py-2 bg-primary-blue text-white text-sm rounded-lg hover:bg-accent-blue transition-colors"
+              >
+                <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M19 0H5a5 5 0 00-5 5v14a5 5 0 005 5h14a5 5 0 005-5V5a5 5 0 00-5-5zM8 19H5V8h3v11zM6.5 6.75A1.75 1.75 0 118.25 5 1.75 1.75 0 016.5 6.75zM19 19h-3v-4.7C16 12.3 15.2 12 14 12c-1.8 0-2 1.2-2 2.8V19h-3V8h3v1.9c.5-.9 1.4-1.9 3-1.9 3.5 0 4 2.3 4 5.7V19z"/>
+                </svg>
+                Connect
+              </a>
+            ` : ''}
+          </div>
+        `;
+
+        grid.appendChild(card);
+      });
+
+      // Update count
+      countElement.textContent = `${testMembers.length} members found`;
+
+      // Simple search functionality
+      const searchInput = document.createElement('input');
+      searchInput.type = 'text';
+      searchInput.id = 'search-input';
+      searchInput.placeholder = 'Search by name, role, or topics...';
+      searchInput.className = 'w-full px-4 py-3 text-lg border-2 border-gray-200 rounded-lg focus:border-primary-blue focus:outline-none mb-8';
+
+      const searchContainer = document.querySelector('.text-center.mb-12');
+      searchContainer.insertBefore(searchInput, searchContainer.firstChild);
+
+      searchInput.addEventListener('input', function(e) {
+        const query = e.target.value.toLowerCase().trim();
+        const cards = document.querySelectorAll('.member-card');
+        let visibleCount = 0;
+
+        cards.forEach(card => {
+          const name = card.querySelector('h3').textContent.toLowerCase();
+          const role = card.querySelector('p').textContent.toLowerCase();
+          const topics = card.querySelectorAll('.topic-tag');
+
+          let matches = false;
+          if (name.includes(query) || role.includes(query)) {
+            matches = true;
+          }
+
+          topics.forEach(topic => {
+            if (topic.textContent.toLowerCase().includes(query)) {
+              matches = true;
+            }
+          });
+
+          card.style.display = matches || query === '' ? 'block' : 'none';
+          if (matches || query === '') visibleCount++;
+        });
+
+        countElement.textContent = `${visibleCount} member${visibleCount !== 1 ? 's' : ''} found`;
+      });
+    });
+  </script>
+
+  <style>
+    .line-clamp-3 {
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .member-card {
+      transition: all 0.3s ease;
+    }
+    .member-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+    }
+  </style>
 </body>
 </html>

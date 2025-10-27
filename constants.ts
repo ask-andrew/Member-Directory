@@ -1,2 +1,0 @@
-export const LOGO_URL = 'https://media.licdn.com/dms/image/v2/D4D0BAQEUav1cXPnUVw/company-logo_200_200/B4DZiEsvUIH4AI-/0/1754572977758/momentvm_club_logo?e=1762992000&v=beta&t=qIMCVmgmUW9oXacXBaFTrPy6PPXinQB6tDFu8TPXrGg';
-export const SITE_NAME = 'Member Directory';
