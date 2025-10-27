@@ -1,0 +1,5 @@
+{
+  "name": "Member Directory",
+  "description": "A searchable directory of Discord community members, showcasing their roles, fun facts, and topics of expertise.",
+  "requestFramePermissions": []
+}

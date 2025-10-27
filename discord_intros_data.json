@@ -1,0 +1,91 @@
+
+[
+  {
+    "name": "Fed (Federico Maffini)",
+    "linkedin": "https://www.linkedin.com/in/federicomaffini/",
+    "current_role_what_i_do": "COO at The Collecting Group (10+ years at Amazon previously). Focus on Data, Biz Ops, and \"getting shit done.\"",
+    "fun_fact_s": ["Wrote a book", "is WSET certified", "loves watches", "started the Discord server 2 years ago", "hosted a radio show"],
+    "topics_to_ask_me_about": ["Real world AI applications", "processes and mechanisms", "sales operations", "business operations", "and everything along those lines"],
+    "slug": "fed-federico-maffini"
+  },
+  {
+    "name": "Andrew Ledet",
+    "linkedin": "https://www.linkedin.com/in/andrewledet/",
+    "current_role_what_i_do": "Building a tool to help with communication overload, mentor/coach, teach tech in the community, play the sax in two bands.",
+    "fun_fact_s": ["Threw out the first pitch at a Cubs game", "jumped off the Alps for a birthday", "made Dustin Hoffman laugh"],
+    "topics_to_ask_me_about": ["Leadership", "mindfulness", "journaling", "Customer Success", "marketing strategy", "music theory"],
+    "slug": "andrew-ledet"
+  },
+  {
+    "name": "Nour Daoui-Schmied",
+    "linkedin": "https://www.linkedin.com/in/nourdaoui/",
+    "current_role_what_i_do": "Senior Program Manager at AWS (almost 6 years) in Biz Ops and Customer Enablement.",
+    "fun_fact_s": ["Speaks 4 languages", "understands 6"],
+    "topics_to_ask_me_about": ["Project/Program management theory", "stakeholder mapping", "management", "and communication", "goals and KPI setup", "creating structure out of chaos"],
+    "slug": "nour-daoui-schmied"
+  },
+  {
+    "name": "Josh (Joshua Gunsberger)",
+    "linkedin": "https://www.linkedin.com/in/joshua-gunsberger-677ab92/",
+    "current_role_what_i_do": "Senior business developer in Spain & France for a high value, single lot property auction company, and head of Europe for a US-based yacht auction house. A \"juggler.\"",
+    "fun_fact_s": ["Loves Ice Hockey", "played in University", "had the only roller hockey injury recorded in Mallorca (40 stitches and a recovered knocked-out tooth)"],
+    "topics_to_ask_me_about": ["Sales operations", "business development strategies", "introductions to a solution provider", "and great restaurant recommendations"],
+    "slug": "josh-joshua-gunsberger"
+  },
+  {
+    "name": "Greg (GO)",
+    "linkedin": "https://www.linkedin.com/in/gossola/",
+    "current_role_what_i_do": "Part of the Founding team and Sales director at one.five (AI-powered R&D of sustainable packaging in Germany). Previous work in advisory and digital strategy/marketing consulting.",
+    "fun_fact_s": ["Loves kitesurfing", "fencing", "salsa dancing", "knows 4 languages", "adores travelling", "is one of the \"few fully ginger italians.\""],
+    "topics_to_ask_me_about": ["Digital strategy", "sales strategy", "digital marketing", "start-up & growth"],
+    "slug": "greg-go"
+  },
+  {
+    "name": "Olly Brand (Brando)",
+    "linkedin": "https://www.linkedin.com/in/ollybrand/",
+    "current_role_what_i_do": "Currently HoE at The Collecting Group (TCG) but moving to be HoE at https://cognitoedu.org/ in October (23 years at IBM prior to TCG).",
+    "fun_fact_s": ["Featured in a YouTube video on an endurance race with 142K views"],
+    "topics_to_ask_me_about": ["Managing Engineers", "Coaching", "Building Systems & Teams", "using AI in Engineering", "Agile", "and CARS"],
+    "slug": "olly-brand-brando"
+  },
+  {
+    "name": "Sean O’Brien",
+    "linkedin": "https://www.linkedin.com/in/aws-sean",
+    "current_role_what_i_do": "On the Customer Optimization & Acceleration team at AWS (FinOps x GTM x AI), helping startups and enterprises with cloud spend. Previous work in Logistics Operations (GM & Amazon), Partner Management.",
+    "fun_fact_s": ["Dad", "duck hunter", "sports fanatic", "grew up running pawn shops", "currently prototyping an AI startup", "was shouted out in a Rap song once"],
+    "topics_to_ask_me_about": ["FinOps", "startup ideation", "cloud GTM", "AWS cost tools", "AI agents", "vertical SaaS plays", "sales messaging", "sales engagement"],
+    "slug": "sean-o-brien"
+  },
+  {
+    "name": "Paweł Kopeć (pkopec)",
+    "linkedin": "https://www.linkedin.com/in/paweł-kopeć-8b2578142/",
+    "current_role_what_i_do": "Founding Engineer at MAKO (building GPU kernel generation and optimization platform). Previously the 2nd employee at ASI (optimization engine for Alaska Airlines) and worked on TTS tech at Amazon Alexa.",
+    "fun_fact_s": ["Helped Alaska Airlines cut 5 minutes of time from an average flight with an optimization engine"],
+    "topics_to_ask_me_about": ["High-performance AI computing", "critical distributed systems", "airlines and defense", "engineering leadership/management", "seed to series B startups", "working with engineering teams in Europe"],
+    "slug": "paweł-kopeć-pkopec"
+  },
+  {
+    "name": "Max (maxigee)",
+    "linkedin": "https://www.linkedin.com/in/maxgoodings/",
+    "current_role_what_i_do": "Head of field ops performance at Cityfibre. Previously spent nearly 4 years across Amazon/AWS and 8 years at Rolls-Royce.",
+    "fun_fact_s": ["Godfather is an international sheep herder", "played saxophone at a professional venue", "played cricket against a current England player", "accidentally called a sexual health clinic on a meeting speaker phone in front of the RR E-team"],
+    "topics_to_ask_me_about": ["Data interpretation", "performance driven decision making", "field operations", "manufacturing", "program management fundamentals", "lean 6 sigma", "continuous improvement", "emotional quotient"],
+    "slug": "max-maxigee"
+  },
+  {
+    "name": "Victor (Victor Noronha)",
+    "linkedin": "https://www.linkedin.com/in/victor-noronha/",
+    "current_role_what_i_do": "Managing customers' operations and architecture on AWS, focused on automotive and manufacturing. Prior experience managing customers in fintech and banking.",
+    "fun_fact_s": ["Currently learning Italian", "already speaks Portuguese", "English", "and German", "Into crypto and privacy advocacy"],
+    "topics_to_ask_me_about": ["Anything customer relationship", "incident management", "and operations"],
+    "slug": "victor-noronha"
+  },
+  {
+    "name": "James (James@Canopy)",
+    "linkedin": "https://www.linkedin.com/in/james-marks-32a4b373/",
+    "current_role_what_i_do": "Founder & CEO at Canopy Cloud (helping organizations procure cloud services and building a marketplace). Prior work includes 7 years at Amazon/AWS in Strategy, Operational, and Continuous Improvement Roles.",
+    "fun_fact_s": ["Spent 7 years at Amazon and AWS"],
+    "topics_to_ask_me_about": ["Operations", "building startups", "cloud computing and procurement", "operational excellence", "performance improvement and building teams"],
+    "slug": "james-james-canopy"
+  }
+]
