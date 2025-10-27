@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Member } from '../types';
@@ -9,6 +10,7 @@ interface RawMember {
   current_role_what_i_do: string;
   fun_fact_s: string | string[];
   topics_to_ask_me_about: string | string[];
+  tags?: string | string[]; // Added new optional field
 }
 
 // Helper to process raw data into Member type
@@ -18,6 +20,7 @@ const processMemberData = (item: RawMember): Member => {
     linkedin: normalizeLinkedInUrl(item.linkedin),
     fun_fact_s: Array.isArray(item.fun_fact_s) ? item.fun_fact_s : (item.fun_fact_s || '').split(',').map((s: string) => s.trim()).filter(Boolean),
     topics_to_ask_me_about: Array.isArray(item.topics_to_ask_me_about) ? item.topics_to_ask_me_about : (item.topics_to_ask_me_about || '').split(',').map((s: string) => s.trim()).filter(Boolean),
+    tags: Array.isArray(item.tags) ? item.tags : (item.tags || '').split(',').map((s: string) => s.trim()).filter(Boolean), // Process tags
     slug: slugify(item.name),
   };
 };
@@ -135,6 +138,22 @@ const MemberProfile: React.FC = () => {
                     <li key={index}>{topic}</li>
                   ))}
                 </ul>
+              </div>
+            )}
+
+            {member.tags && member.tags.length > 0 && (
+              <div className="mb-6">
+                <h3 className="text-xl font-semibold text-accent-blue mb-2">Tags</h3>
+                <div className="flex flex-wrap gap-2">
+                  {member.tags.map((tag, index) => (
+                    <span
+                      key={index}
+                      className="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm font-medium"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
               </div>
             )}
 

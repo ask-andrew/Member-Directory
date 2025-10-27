@@ -1,4 +1,5 @@
 
+
 import React, { useState, useMemo, useEffect, useCallback } from 'react';
 import MemberCard from '../components/MemberCard';
 import { Member } from '../types';
@@ -10,6 +11,7 @@ interface RawMember {
   current_role_what_i_do: string;
   fun_fact_s: string | string[];
   topics_to_ask_me_about: string | string[];
+  tags?: string | string[]; // Added new optional field
 }
 
 const processMemberData = (data: RawMember[]): Member[] => {
@@ -18,6 +20,7 @@ const processMemberData = (data: RawMember[]): Member[] => {
     linkedin: normalizeLinkedInUrl(item.linkedin),
     fun_fact_s: Array.isArray(item.fun_fact_s) ? item.fun_fact_s : (item.fun_fact_s || '').split(',').map((s: string) => s.trim()).filter(Boolean),
     topics_to_ask_me_about: Array.isArray(item.topics_to_ask_me_about) ? item.topics_to_ask_me_about : (item.topics_to_ask_me_about || '').split(',').map((s: string) => s.trim()).filter(Boolean),
+    tags: Array.isArray(item.tags) ? item.tags : (item.tags || '').split(',').map((s: string) => s.trim()).filter(Boolean), // Process tags
     slug: slugify(item.name),
   }));
 };
@@ -93,7 +96,8 @@ const Home: React.FC = () => {
           member.current_role_what_i_do.toLowerCase().includes(lowerCaseSearchTerm) ||
           member.topics_to_ask_me_about.some((topic) =>
             topic.toLowerCase().includes(lowerCaseSearchTerm)
-          )
+          ) ||
+          (member.tags && member.tags.some((tag) => tag.toLowerCase().includes(lowerCaseSearchTerm))) // Search by tags
       );
     }
     return currentMembers;
@@ -120,7 +124,7 @@ const Home: React.FC = () => {
       <div className="max-w-xl mx-auto mb-8">
         <input
           type="text"
-          placeholder="Search members by name, role, or topics..."
+          placeholder="Search members by name, role, topics, or tags..."
           className="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-accent-blue focus:border-transparent text-lg"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
