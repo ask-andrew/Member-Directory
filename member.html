@@ -31,7 +31,7 @@
             </svg>
           </div>
           <div>
-            <h1 class="text-2xl font-bold">Ascension Directory</h1>
+            <h1 class="text-2xl font-bold">Momentum Directory</h1>
             <p class="text-blue-200 text-sm">Community Member Directory</p>
           </div>
         </div>
@@ -57,66 +57,51 @@
           <div class="flex flex-col md:flex-row gap-8">
             <!-- Avatar Section -->
             <div class="md:w-1/3 text-center">
-              <div class="w-32 h-32 bg-primary-blue rounded-full flex items-center justify-center mx-auto mb-4">
-                <span class="text-white text-3xl font-semibold">
-                  {{ member.name | split: ' ' | first | slice: 0,1 }}{{ member.name | split: '(' | first | split: ' ' | last | slice: 0,1 }}
+              <div class="w-32 h-32 gradient-avatar rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                <span class="text-white text-3xl font-semibold" id="member-initials">
+                  --
                 </span>
               </div>
 
               <!-- LinkedIn Button -->
-              {% if member.linkedin %}
-              <a
-                href="{{ member.linkedin }}"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="inline-flex items-center px-6 py-3 bg-primary-blue text-white rounded-lg hover:bg-accent-blue transition-colors"
-              >
-                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M19 0H5a5 5 0 00-5 5v14a5 5 0 005 5h14a5 5 0 005-5V5a5 5 0 00-5-5zM8 19H5V8h3v11zM6.5 6.75A1.75 1.75 0 118.25 5 1.75 1.75 0 016.5 6.75zM19 19h-3v-4.7C16 12.3 15.2 12 14 12c-1.8 0-2 1.2-2 2.8V19h-3V8h3v1.9c.5-.9 1.4-1.9 3-1.9 3.5 0 4 2.3 4 5.7V19z"/>
-                </svg>
-                Connect on LinkedIn
-              </a>
-              {% endif %}
+              <div id="linkedin-section" style="display: none;">
+                <a
+                  id="linkedin-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center px-6 py-3 bg-primary-blue text-white rounded-lg hover:bg-accent-blue transition-colors"
+                >
+                  <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M19 0H5a5 5 0 00-5 5v14a5 5 0 005 5h14a5 5 0 005-5V5a5 5 0 00-5-5zM8 19H5V8h3v11zM6.5 6.75A1.75 1.75 0 118.25 5 1.75 1.75 0 016.5 6.75zM19 19h-3v-4.7C16 12.3 15.2 12 14 12c-1.8 0-2 1.2-2 2.8V19h-3V8h3v1.9c.5-.9 1.4-1.9 3-1.9 3.5 0 4 2.3 4 5.7V19z"/>
+                  </svg>
+                  Connect on LinkedIn
+                </a>
+              </div>
             </div>
 
             <!-- Content Section -->
             <div class="md:w-2/3">
-              <h1 class="text-3xl font-bold text-primary-navy mb-4">{{ member.name }}</h1>
+              <h1 class="text-3xl font-bold text-primary-navy mb-4" id="member-name">Member Name</h1>
 
               <!-- Role -->
               <div class="mb-6">
                 <h2 class="text-lg font-semibold text-gray-700 mb-2">Current Role</h2>
-                <p class="text-gray-600 leading-relaxed">{{ member.current_role_what_i_do }}</p>
+                <p class="text-gray-600 leading-relaxed" id="member-role">Loading member information...</p>
               </div>
 
               <!-- Fun Facts -->
-              {% if member.fun_fact_s %}
-              <div class="mb-6">
+              <div class="mb-6" id="fun-facts-section" style="display: none;">
                 <h2 class="text-lg font-semibold text-gray-700 mb-3">Fun Facts</h2>
-                <ul class="space-y-2">
-                  {% for fact in member.fun_fact_s %}
-                  <li class="flex items-start">
-                    <span class="inline-block w-2 h-2 bg-primary-blue rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                    <span class="text-gray-600">{{ fact }}</span>
-                  </li>
-                  {% endfor %}
+                <ul class="space-y-2" id="fun-facts-list">
                 </ul>
               </div>
-              {% endif %}
 
               <!-- Topics -->
-              {% if member.topics_to_ask_me_about %}
-              <div class="mb-6">
+              <div class="mb-6" id="topics-section" style="display: none;">
                 <h2 class="text-lg font-semibold text-gray-700 mb-3">Topics to Ask Me About</h2>
-                <div class="flex flex-wrap gap-2">
-                  {% for topic in member.topics_to_ask_me_about %}
-                  <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">
-                    {{ topic }}
-                  </span>
-                  {% endfor %}
+                <div class="flex flex-wrap gap-2" id="topics-list">
                 </div>
               </div>
-              {% endif %}
             </div>
           </div>
         </div>
@@ -137,9 +122,167 @@
   <footer class="bg-primary-navy text-white mt-16">
     <div class="container mx-auto px-4 py-8">
       <div class="text-center">
-        <p class="text-blue-200">&copy; 2025 Ascension Directory. Professional community connections.</p>
+        <p class="text-blue-200">&copy; 2025 Momentum Directory. Professional community connections.</p>
       </div>
     </div>
   </footer>
+
+  <script>
+    // Community member data (same as index.html)
+    const allMembers = [
+      {
+        name: "Fed (Federico Maffini)",
+        linkedin: "https://www.linkedin.com/in/federicomaffini/",
+        current_role_what_i_do: "COO at The Collecting Group (10+ years at Amazon previously). Focus on Data, Biz Ops, and \"getting shit done.\"",
+        fun_fact_s: ["Wrote a book", "is WSET certified", "loves watches", "started the Discord server 2 years ago", "hosted a radio show"],
+        topics_to_ask_me_about: ["Real world AI applications", "processes and mechanisms", "sales operations", "business operations"],
+        slug: "fed-federico-maffini"
+      },
+      {
+        name: "Andrew Ledet",
+        linkedin: "https://www.linkedin.com/in/andrewledet/",
+        current_role_what_i_do: "Building a tool to help with communication overload, mentor/coach, teach tech in the community, play the sax in two bands.",
+        fun_fact_s: ["Threw out the first pitch at a Cubs game", "jumped off the Alps for a birthday", "made Dustin Hoffman laugh"],
+        topics_to_ask_me_about: ["Leadership", "mindfulness", "journaling", "Customer Success", "marketing strategy", "music theory"],
+        slug: "andrew-ledet"
+      },
+      {
+        name: "Nour Daoui-Schmied",
+        linkedin: "https://www.linkedin.com/in/nourdaoui/",
+        current_role_what_i_do: "Senior Program Manager at AWS (almost 6 years) in Biz Ops and Customer Enablement.",
+        fun_fact_s: ["Speaks 4 languages", "understands 6"],
+        topics_to_ask_me_about: ["Project/Program management theory", "stakeholder mapping", "management", "communication", "goals and KPI setup", "creating structure out of chaos"],
+        slug: "nour-daoui-schmied"
+      },
+      {
+        name: "Josh (Joshua Gunsberger)",
+        linkedin: "https://www.linkedin.com/in/joshua-gunsberger-677ab92/",
+        current_role_what_i_do: "Senior business developer in Spain & France for a high value, single lot property auction company, and head of Europe for a US-based yacht auction house. A \"juggler.\"",
+        fun_fact_s: ["Loves Ice Hockey", "played in University", "had the only roller hockey injury recorded in Mallorca (40 stitches and a recovered knocked-out tooth)"],
+        topics_to_ask_me_about: ["Sales operations", "business development strategies", "introductions to a solution provider", "great restaurant recommendations"],
+        slug: "josh-joshua-gunsberger"
+      },
+      {
+        name: "Greg (GO)",
+        linkedin: "https://www.linkedin.com/in/gossola/",
+        current_role_what_i_do: "Part of the Founding team and Sales director at one.five (AI-powered R&D of sustainable packaging in Germany). Previous work in advisory and digital strategy/marketing consulting.",
+        fun_fact_s: ["Loves kitesurfing", "fencing", "salsa dancing", "knows 4 languages", "adores travelling", "is one of the \"few fully ginger italians.\""],
+        topics_to_ask_me_about: ["Digital strategy", "sales strategy", "digital marketing", "start-up & growth"],
+        slug: "greg-go"
+      },
+      {
+        name: "Olly Brand (Brando)",
+        linkedin: "https://www.linkedin.com/in/ollybrand/",
+        current_role_what_i_do: "Currently HoE at The Collecting Group (TCG) but moving to be HoE at https://cognitoedu.org/ in October (23 years at IBM prior to TCG).",
+        fun_fact_s: ["Featured in a YouTube video on an endurance race with 142K views"],
+        topics_to_ask_me_about: ["Managing Engineers", "Coaching", "Building Systems & Teams", "using AI in Engineering", "Agile", "CARS"],
+        slug: "olly-brand-brando"
+      },
+      {
+        name: "Sean O'Brien",
+        linkedin: "https://www.linkedin.com/in/aws-sean",
+        current_role_what_i_do: "On the Customer Optimization & Acceleration team at AWS (FinOps x GTM x AI), helping startups and enterprises with cloud spend. Previous work in Logistics Operations (GM & Amazon), Partner Management.",
+        fun_fact_s: ["Dad", "duck hunter", "sports fanatic", "grew up running pawn shops", "currently prototyping an AI startup", "was shouted out in a Rap song once"],
+        topics_to_ask_me_about: ["FinOps", "startup ideation", "cloud GTM", "AWS cost tools", "AI agents", "vertical SaaS plays", "sales messaging", "sales engagement"],
+        slug: "sean-obrien"
+      },
+      {
+        name: "Paweł Kopeć (pkopec)",
+        linkedin: "https://www.linkedin.com/in/paweł-kopeć-8b2578142/",
+        current_role_what_i_do: "Founding Engineer at MAKO (building GPU kernel generation and optimization platform). Previously the 2nd employee at ASI (optimization engine for Alaska Airlines) and worked on TTS tech at Amazon Alexa.",
+        fun_fact_s: ["Helped Alaska Airlines cut 5 minutes of time from an average flight with an optimization engine"],
+        topics_to_ask_me_about: ["High-performance AI computing", "critical distributed systems", "airlines and defense", "engineering leadership/management", "seed to series B startups", "working with engineering teams in Europe"],
+        slug: "paweł-kopec-pkopec"
+      },
+      {
+        name: "Max (maxigee)",
+        linkedin: "https://www.linkedin.com/in/maxgoodings/",
+        current_role_what_i_do: "Head of field ops performance at Cityfibre. Previously spent nearly 4 years across Amazon/AWS and 8 years at Rolls-Royce.",
+        fun_fact_s: ["Godfather is an international sheep herder", "played saxophone at a professional venue", "played cricket against a current England player", "accidentally called a sexual health clinic on a meeting speaker phone in front of the RR E-team"],
+        topics_to_ask_me_about: ["Data interpretation", "performance driven decision making", "field operations", "manufacturing", "program management fundamentals", "lean 6 sigma", "continuous improvement", "emotional quotient"],
+        slug: "max-maxigee"
+      },
+      {
+        name: "Victor (Victor Noronha)",
+        linkedin: "https://www.linkedin.com/in/victor-noronha/",
+        current_role_what_i_do: "Managing customers' operations and architecture on AWS, focused on automotive and manufacturing. Prior experience managing customers in fintech and banking.",
+        fun_fact_s: ["Currently learning Italian", "already speaks Portuguese", "English", "and German", "Into crypto and privacy advocacy"],
+        topics_to_ask_me_about: ["customer relationship", "incident management", "operations"],
+        slug: "victor-noronha"
+      },
+      {
+        name: "James (James@Canopy)",
+        linkedin: "https://www.linkedin.com/in/james-marks-32a4b373/",
+        current_role_what_i_do: "Founder & CEO at Canopy Cloud (helping organizations procure cloud services and building a marketplace). Prior work includes 7 years at Amazon/AWS in Strategy, Operational, and Continuous Improvement Roles.",
+        fun_fact_s: ["Spent 7 years at Amazon and AWS"],
+        topics_to_ask_me_about: ["Operations", "building startups", "cloud computing and procurement", "operational excellence", "performance improvement and building teams"],
+        slug: "james-james-canopy"
+      }
+    ];
+
+    document.addEventListener('DOMContentLoaded', function() {
+      // Get member slug from URL
+      const urlPath = window.location.pathname;
+      const slugMatch = urlPath.match(/\/member\/([^\/]+)\//);
+      const memberSlug = slugMatch ? slugMatch[1] : null;
+
+      if (!memberSlug) {
+        document.getElementById('member-name').textContent = 'Member Not Found';
+        document.getElementById('member-role').textContent = 'The requested member profile could not be found.';
+        return;
+      }
+
+      // Find the member
+      const member = allMembers.find(m => m.slug === memberSlug);
+
+      if (!member) {
+        document.getElementById('member-name').textContent = 'Member Not Found';
+        document.getElementById('member-role').textContent = 'The requested member profile could not be found.';
+        return;
+      }
+
+      // Populate the page
+      document.getElementById('member-name').textContent = member.name;
+      document.getElementById('member-initials').textContent =
+        member.name.split(' ')[0][0] + member.name.split('(')[0].split(' ').pop()[0];
+      document.getElementById('member-role').textContent = member.current_role_what_i_do;
+
+      // Handle LinkedIn
+      if (member.linkedin) {
+        document.getElementById('linkedin-link').href = member.linkedin;
+        document.getElementById('linkedin-section').style.display = 'block';
+      }
+
+      // Handle fun facts
+      if (member.fun_fact_s && member.fun_fact_s.length > 0) {
+        const factsList = document.getElementById('fun-facts-list');
+        member.fun_fact_s.forEach(fact => {
+          const li = document.createElement('li');
+          li.className = 'flex items-start';
+          li.innerHTML = `
+            <span class="inline-block w-2 h-2 bg-primary-blue rounded-full mt-2 mr-3 flex-shrink-0"></span>
+            <span class="text-gray-600">${fact}</span>
+          `;
+          factsList.appendChild(li);
+        });
+        document.getElementById('fun-facts-section').style.display = 'block';
+      }
+
+      // Handle topics
+      if (member.topics_to_ask_me_about && member.topics_to_ask_me_about.length > 0) {
+        const topicsList = document.getElementById('topics-list');
+        member.topics_to_ask_me_about.forEach(topic => {
+          const span = document.createElement('span');
+          span.className = 'bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-sm font-medium';
+          span.textContent = topic;
+          topicsList.appendChild(span);
+        });
+        document.getElementById('topics-section').style.display = 'block';
+      }
+
+      // Update page title
+      document.title = `${member.name} - Momentum Directory`;
+    });
+  </script>
 </body>
 </html>
