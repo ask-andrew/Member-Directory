@@ -1,6 +1,0 @@
-<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="200" height="200" rx="20" fill="#1e3a8a"/>
-  <circle cx="100" cy="80" r="30" fill="#ffffff"/>
-  <path d="M70 140 Q70 120 100 120 Q130 120 130 140 L130 160 L70 160 Z" fill="#ffffff"/>
-  <text x="100" y="185" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="12" font-weight="bold">ASCENSION</text>
-</svg>
