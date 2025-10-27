@@ -211,11 +211,7 @@
 
         card.innerHTML = `
           <div class="p-6 h-full flex flex-col">
-            <div class="w-16 h-16 gradient-avatar rounded-full flex items-center justify-center mb-4 shadow-lg">
-              <span class="text-white text-xl font-semibold">
-                ${member.name.split(' ')[0][0]}${member.name.split('(')[0].split(' ').pop()[0]}
-              </span>
-            </div>
+            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=${member.slug}" alt="${member.name}" class="avatar-image w-16 h-16 rounded-full mb-4 shadow-lg border-2 border-white">
             <h3 class="text-xl font-semibold text-primary-navy mb-2">
               <a href="/member/${member.slug}/" class="hover:text-primary-blue transition-colors">
                 ${member.name}
@@ -480,8 +476,11 @@
     .topic-filter-btn:hover {
       transform: scale(1.05);
     }
-    .gradient-avatar {
-      background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+    .avatar-image {
+      transition: transform 0.3s ease;
+    }
+    .avatar-image:hover {
+      transform: scale(1.1);
     }
     .search-input {
       transition: all 0.3s ease;
